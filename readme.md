@@ -50,7 +50,7 @@ strcmp("<compiled hash>", actualHash) --> strcmp(actualHash, actualHash)
 In actual assembly changes this:
 ```asm
 mov rdx, qword ptr [rdx]
-lea rcx, [COMPILED_HASH_ADDRESS]
+lea rcx, [SOME_STRING_ADDRESS]
 call strcmp 
 ```
 
