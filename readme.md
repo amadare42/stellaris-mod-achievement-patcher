@@ -24,7 +24,7 @@ Find following pattern (based on AsterAgain's [post](https://www.reddit.com/r/St
 mov rdx [rdx]
 
 ; 48 8D 0D ?? ?? ?? ?? 
-lea rcx [COMPILED_HASH_ADDRESS] ; (some relative location, dependent on platform/binary - this relative location is the location of the actual hashsum, which is also stored in the binary)
+lea rcx [SOME_STRING_ADDRESS] ; (some relative location, dependent on platform/binary - this relative location is the location of the actual hashsum, which is also stored in the binary)
 
 ; E8 
 call dword ; (some absolute location, dependent on platform/binary - this location will contain the assembly of the C function strcmp)
@@ -50,7 +50,7 @@ strcmp("<compiled hash>", actualHash) --> strcmp(actualHash, actualHash)
 In actual assembly changes this:
 ```asm
 mov rdx, qword ptr [rdx]
-lea rcx, [SOME_STRING_ADDRESS]
+lea rcx, [COMPILED_HASH_ADDRESS]
 call strcmp 
 ```
 
