@@ -20,14 +20,14 @@ There are multiple places in game where hash-sum is checked using `strcmp` funct
 Find following pattern (based on AsterAgain's [post](https://www.reddit.com/r/StellarisMods/comments/n007f3/comment/gw6z6d2/?utm_source=share&utm_medium=web2x&context=3)):
 
 ```asm
-48 8B 12 
+; 48 8B 12 
 mov rdx [rdx]
 
-48 8D 0D ?? ?? ?? ?? 
-lea rcx (some relative location, dependent on platform/binary - this relative location is the location of the actual hashsum, which is also stored in the binary)
+; 48 8D 0D ?? ?? ?? ?? 
+lea rcx [COMPILED_HASH_ADDRESS] ; (some relative location, dependent on platform/binary - this relative location is the location of the actual hashsum, which is also stored in the binary)
 
-E8 
-call dword (some absolute location, dependent on platform/binary - this location will contain the assembly of the C function strcmp)
+; E8 
+call dword ; (some absolute location, dependent on platform/binary - this location will contain the assembly of the C function strcmp)
 ```
 
 For my version 3.4.3 it is only 14 calls that match that pattern, but we have to filter ones that we actually need. 
